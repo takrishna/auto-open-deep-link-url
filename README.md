@@ -1,5 +1,6 @@
 # open-clipboard-in-chrome
 Chrome extension to open url (copied to the clipboard) in a new tab
+
 Basically saves you the following:
 1. Hit the + button
 2. Ctrl + V (or Right click & Paste)
@@ -8,6 +9,7 @@ Basically saves you the following:
 Advanced Features:
 1. Weaves URL with contents of the clipboard 
 For example:
-http://www.myintranetsite/allapp/<clipboard content>/details
+
+http://www.myintranetsite/allapp/<- clipboard content ->/details
   
 

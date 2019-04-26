@@ -1,4 +1,4 @@
-# open-clipboard-in-chrome
+# open-clipboard-url-in-chrome
 Chrome extension to open url (copied to the clipboard) in a new tab
 
 Basically saves you the following:

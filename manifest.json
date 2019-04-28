@@ -1,0 +1,38 @@
+{
+  "name": "Open URL From Clipboard",
+  "version": "1.0",
+  "description": "Open URL From Clipboard",
+  "permissions": ["activeTab", "declarativeContent", "storage","tabs","clipboardRead"],
+  "input_components": [
+    {
+      "name": "Test IME",
+      "type": "ime",
+      "id": "test",
+      "description": "Test IME",  
+      "language": "en-US",  
+      "layouts": ["us::eng"]  
+    }
+  ],
+  "options_page": "options.html",
+  
+  "background": {
+    "persistent": true,
+    "page": "background.html"
+  },
+  "page_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "images/get_started16.png",
+      "32": "images/get_started32.png",
+      "48": "images/get_started48.png",
+      "128": "images/get_started128.png"
+    }
+  },
+  "icons": {
+    "16": "images/get_started16.png",
+    "32": "images/get_started32.png",
+    "48": "images/get_started48.png",
+    "128": "images/get_started128.png"
+  },
+  "manifest_version": 2
+}

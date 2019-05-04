@@ -1,5 +1,5 @@
 # auto-open-deep-link-url
-This Chrome extension understands the content on the clipboard, automatically weaves a deep link (as necessary) and navigates to the URL on the newly opened Chrome tab. 
+This Chrome extension understands the content on the clipboard, automatically weaves a deep link (if necessary) and navigates to the URL on the newly opened Chrome tab. 
 
 Few Examples:
 
@@ -18,7 +18,9 @@ After
 2. Open new tab in Chrome
 
 
-2. Open a deep linked URL of your internal portal:
+
+
+-2. Open a deep linked URL of your internal portal:
 http://www.myintranetsite/allapp/<- clipboard content ->/details
 
 Before After Gif Img

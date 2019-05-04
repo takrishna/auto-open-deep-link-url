@@ -4,8 +4,7 @@ A Chrome extension which understands the content on the clipboard, automatically
 Examples:
 
 * **Deep linked URLs:**
-
-http://www.myintranetsite/allapp/ { places clipboard content here } /details
+    http://www.myintranetsite/allapp/ { places clipboard content here } /details
 
 Before After Gif Img
 

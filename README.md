@@ -24,7 +24,7 @@ After
 
 Similarly configure Service now (SNOW) incidents, requests etc
 
-* **Automatically open URLs:** If a URL is copied on to the clipboard and a new tab is open then, the URL is automatically open by this extension
+* **Automatically open URLs:** If a URL is copied on to the clipboard, then opening a new tab will automatically navigate to the copied URL
 
 Before
 1. Copy URL

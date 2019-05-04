@@ -3,13 +3,13 @@ A Chrome extension which understands the content on the clipboard, automatically
 
 Examples:
 
-**1. Deep linked URL:**
+* **Deep linked URLs:**
 
-http://www.myintranetsite/allapp/<- clipboard content ->/details
+http://www.myintranetsite/allapp/ { places clipboard content here } /details
 
 Before After Gif Img
 
-**2. Service now "Change request":**
+* **Service now "Change request":**
 
 Before
 1. Copy Change Request
@@ -25,7 +25,7 @@ After
 
 Similarly configure Service now (SNOW) incidents, requests etc
 
-**3. Automatically open URLs:**
+* **Automatically open URLs:**
 Before
 1. Copy URL
 2. Open new tab in Chrome

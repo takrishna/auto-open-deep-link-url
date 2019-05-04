@@ -1,15 +1,17 @@
-# auto-open-url-on-clipboard
-Chrome extension to open url (copied to the clipboard) in a new tab
+# auto-open-deep-link-url
+This Chrome extension understands the content on the clipboard, automatically weaves a deep link (as necessary) and navigates to the URL on the newly opened Chrome tab. 
 
-Basically saves you the following:
-1. Hit the + button
-2. Ctrl + V (or Right click & Paste)
-3. Enter 
+Few Examples:
 
-Advanced Features:
-1. Weaves URL with contents of the clipboard 
-For example:
+1. Open Service now "Change request" directly:
 
+Before After Gif Img
+
+
+2. Open a deep link URL in your internal portal:
 http://www.myintranetsite/allapp/<- clipboard content ->/details
-  
+
+Before After Gif Img
+
+3. Save a Ctrl + V (or Right click & Paste) & Enter
 

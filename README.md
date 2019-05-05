@@ -6,9 +6,9 @@ Examples:
 * **Deep linked URLs:**
     http://www.myintranetsite/allapp/ { places clipboard content here } /details
 
-[[https://github.com/takrishna/auto-open-deep-link-url/blob/master/3_demo.gif|alt=octocat]]
 
-![ttystudio GIF](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
+
+
 
 
 * **Service now "Change request":**
@@ -29,13 +29,4 @@ Similarly configure Service now (SNOW) incidents, requests etc
 
 * **Automatically open URLs:** If a URL is copied on to the clipboard, then opening a new tab will automatically navigate to the copied URL
 
-Before
-1. Copy URL
-2. Open new tab in Chrome
-3. Click on address bar
-4. Ctrl + V (or Right click & Paste) & Enter
-
-After
-1. Copy URL
-2. Open new tab in Chrome
-
+![Demo 3](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)

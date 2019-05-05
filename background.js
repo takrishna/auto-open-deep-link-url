@@ -31,10 +31,22 @@ chrome.tabs.onCreated.addListener(function(tab) {
     if(isSpectingular(result)){
       chrome.tabs.update(tab.id, {url: "http://google.com/search?q="+result});
     }
+
+
+    if(isInList(result)){
+      chrome.tabs.update(tab.id, {url: "https://www.bbc.com/"+result});
+    }
+
     console.log(result);
   });
   function isURL(input){
     if(input.slice(0,5)=="https" || input.slice(0,4)=="http" || input.slice(0,3)=="www")
+      return true;
+    return false;
+  }
+  function isInList(input){
+    var specMods = ["weather","krish","anamika","ravali","preethi","Bear Tooth"];
+    if(specMods.findIndex(function(element){return input==element})!=-1)
       return true;
     return false;
   }

@@ -1,5 +1,5 @@
 # auto-open-deep-link-url
-A Chrome extension which understands the content on the clipboard, automatically weaves a deep linked URL and navigates to it on the newly opened Chrome tab. 
+A Chrome extension which understands the content on the clipboard, automatically weaves a deep linked URL and navigates to it on the newly opened tab. 
 
 Examples:
 

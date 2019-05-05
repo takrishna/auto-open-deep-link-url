@@ -8,7 +8,7 @@ Examples:
 
 [[https://github.com/takrishna/auto-open-deep-link-url/blob/master/3_demo.gif|alt=octocat]]
 
-![ttystudio GIF](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/demo_3.gif)
+![ttystudio GIF](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
 
 
 * **Service now "Change request":**

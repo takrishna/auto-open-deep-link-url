@@ -5,25 +5,10 @@ Examples:
 
 * **Deep linked URLs:**
     http://www.myintranetsite/allapp/ { places clipboard content here } /details
+![Demo 2](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
 
-
-
-
-
-
-* **Service now "Change request":**
-
-Before
-1. Copy Change Request
-2. Open new tab in Chrome
-3. Enter servicenow url in address bar
-4. Click search bar on the landing page
-5. Paste "Change Request" from clipboard and Hit "Enter"/"Click" on search icon
-6. Lands on the change request page
-
-After
-1. Copy Change Request
-2. Open new tab in Chrome (This extension does the rest)
+* **Service now "Change request":** If a Service Now "Change request" number is copied on to the clipboard, then opening a new tab will automatically navigate to the Service Now Change Request page
+![Demo 2](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
 
 Similarly configure Service now (SNOW) incidents, requests etc
 

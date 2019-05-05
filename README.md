@@ -4,7 +4,7 @@ A Chrome extension which understands the content on the clipboard, automatically
 Examples:
 
 * **Deep linked URLs:**
-    http://www.myintranetsite/allapp/ { places clipboard content here } /details
+``` http://www.myintranetsite/allapp/ { places clipboard content here } /details ```
 
 ![Demo 1](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
 

@@ -16,8 +16,6 @@ Examples:
 
 ![Demo 2](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
 
-
-
 * **Automatically open URLs:** If a URL is copied on to the clipboard, then opening a new tab will automatically navigate to the copied URL 
 
 ![Demo 3](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)

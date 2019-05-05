@@ -12,7 +12,7 @@ Examples:
 
 ![Demo 2](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
 
-* **BMC Helix ITSM (Remedy) "Incident":** If a "Helix Incident Number" (Remedy Incident) number is copied on to the clipboard, then opening a new tab will automatically navigate to the Incident page. Similarly one can configure Remedy Changes, requests etc.
+* **BMC Helix ITSM (Remedy) "Incident":** If a "Helix Incident Number" (Remedy Incident) is copied on to the clipboard, then opening a new tab will automatically navigate to the Incident page. Similarly one can configure Remedy Changes, requests etc.
 
 ![Demo 2](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)
 

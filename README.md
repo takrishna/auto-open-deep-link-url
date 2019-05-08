@@ -3,7 +3,8 @@ A Chrome extension which understands the content on the clipboard, automatically
 
 Examples:
 
-* **Deep linked URLs:** If the content on the clipboard matches a defined pattern set (RegEx or an array item), then opening a new tab will automatically navigate to the desired page.
+* **Deep linked URLs:** If the content on the clipboard matches a defined pattern set (RegEx or an item on the config array), then opening a new tab will automatically navigate to the desired page.
+
 ``` http://www.myintranetsite/allapp/ { ** places clipboard content here ** } /details ```
 
 ![Demo 1](https://raw.githubusercontent.com/takrishna/auto-open-deep-link-url/master/3_demo.gif)

@@ -2,7 +2,19 @@
 
 'use strict';
 
-chrome.tabs.onCreated.addListener(function(tab) {   
+chrome.tabs.onCreated.addListener(function(tab) {
+  var patternItem = {
+    name:"buildId",
+    type:"pattern",
+    url:"http://google.com/search?q=",
+    patternRegEx:"",
+    func:"var func = function (clipboard,url,array){if(array.findIndex(function(element){return clipboard==element})!=-1){return url+clipboard;}else{return false;}}"
+  }
+  //on created
+  chrome.storage.sync.set({color: '#3aa757'}, function() {
+    console.log('The color is green.');
+  });
+
   chrome.tabs.getSelected(null, function(tab){
     
     //todo have routine to check if clipboard has changed

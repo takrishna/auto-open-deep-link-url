@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
     <style>
       button {
         height: 30px;
@@ -8,14 +9,94 @@
         outline: none;
         margin: 10px;
       }
+      .itemWrapper{
+        display: flex;
+        flex-direction: row;
+      }
+      .newButton{
+        width: 100px;
+      }
+      .advButton{
+        width: 100px;
+      }
+      .abc{
+        align-items: flex-end;
+      }
+      .rightSide{
+        background-color: aquamarine;
+        padding:10px;
+      }
     </style>
   </head>
   <body>
-    <div id="buttonDiv">
-    </div>
-    <div>
-      <p>Choose a different background color!</p>
-    </div>
-  </body>
+    <!-- <div id="buttonDiv">
+    </div> -->
+    <div class="itemWrapper">
+      <div>
+          <button class="newButton">Add New</button>
+        <ol>
+          <li>Spectingular</li>
+          <li>Service Now</li>
+          <li>Something Else</li>
+        </ol>
+        <div class="abc">
+            Import | Export
+          </div>
+      </div>
+      
+      <div class="rightSide">
+        <div>
+            Match Type : 
+            <select value="spectingular" id="type">
+              <option>Word</option>
+              <option>Array</option>
+              <option>RegEx Pattern</option>
+              <option>Custom Function</option>
+            </select>
+        </div>
+        <div>
+            Word : <textarea placeholder="Input a word to match"></textarea>
+        </div>
+        <div>
+            Array : <textarea placeholder="Input comma separated strings"></textarea>
+        </div>
+        <div>
+          RegEx : <textarea placeholder="Input a valid RedEx pattern"></textarea>
+        </div>
+        <div>
+          URL:
+          <textarea placeholder="Input a URL with {clip} where you want to replace"></textarea>
+        </div>
+        <button class="advButton">Show Advanced</button>
+        <div id="container" style="width:700px;height:300px;border:1px solid grey"></div>
+      </div>
+  </div>
+</body>
+<script>var require = { paths: { 'vs': '../node_modules/monaco-editor/min/vs' } };</script>
+<script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+<script src="../node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+<script src="../node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+<script src="/logic.js"></script>
   <script src="options.js"></script>
 </html>
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<link rel="stylesheet" data-name="vs/editor/editor.main" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
+</head>
+<body>
+
+<h2>Monaco Editor Sync Loadiddng Sample</h2>
+<div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
+
+<script>var require = { paths: { 'vs': '../node_modules/monaco-editor/min/vs' } };</script>
+<script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
+<script src="../node_modules/monaco-editor/min/vs/editor/editor.main.nls.js"></script>
+<script src="../node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
+<script src="/logic.js"></script>
+
+
+</body> -->

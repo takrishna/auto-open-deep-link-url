@@ -5,8 +5,7 @@
 chrome.tabs.onCreated.addListener(function(tab) {   
   chrome.tabs.getSelected(null, function(tab){
 
-    //todo have routine to check if clipboard has changed
-    //and trigger auto load
+    //todo - check if clipboard has changed and prevent further
     if(tab.url!="chrome://newtab/")
       return;
 
@@ -27,14 +26,14 @@ chrome.tabs.onCreated.addListener(function(tab) {
         for (var specItem of config.specs) {
           //Evaluates func to memory
           this.eval(specItem.func);
-          //Executes func
-          let result = func(clipboard,specItem.url,specItem.arrayOrPattern);
+          //Execute func to obtain URL to navigate
+          let resultURL = func(clipboard,specItem.url,specItem.arrayOrPattern);
           
-          if (result){
+          if (resultURL){
             if(result.length > 300)
               return;
 
-            chrome.tabs.update(tab.id, {url: result});
+            chrome.tabs.update(tab.id, {url: resultURL});
             break;
           }
         }

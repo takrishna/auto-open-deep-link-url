@@ -1,9 +1,9 @@
 {
-  "name": "angular-phonecat",
+  "name": "url_deep_linker",
   "private": true,
   "version": "0.0.0",
-  "description": "A tutorial application for AngularJS",
-  "repository": "https://github.com/angular/angular-phonecat",
+  "description": "A Chrome extension which understands the content on the clipboard, automatically weaves a deep linked URL and navigates to it on the newly opened tab.",
+  "repository": "https://github.com/takrishna/auto-open-deep-link-url",
   "license": "MIT",
   "devDependencies": {
     "monaco-editor": "latest"

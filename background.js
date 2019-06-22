@@ -22,46 +22,23 @@ chrome.tabs.onCreated.addListener(function(tab) {
     }
 
     //Read config from local storage
-    let config = {};
-    chrome.storage.local.get("specs", function(data) {
-        console.log('color is ', data);
-        config = data;
-        for (var specItem of data.specs) {
+    //This is setup in setup.js - by listening onInstalled listener
+    chrome.storage.local.get("specs", function(config) {
+        for (var specItem of config.specs) {
+          //Evaluates func to memory
           this.eval(specItem.func);
+          //Executes func
           let result = func(clipboard,specItem.url,specItem.arrayOrPattern);
           
-          //Check if weirdo and stop
-          if(result.length > 300)
-             return;
-
           if (result){
+            if(result.length > 300)
+              return;
+
             chrome.tabs.update(tab.id, {url: result});
             break;
           }
         }
         return;
     });
-
-    // ,
-        // {
-        //         "name":"if Gitlab SSH to to URL",
-        //         "type":"pattern",
-        //         "url":"{*}",
-        //         "arrayOrPattern":"^ssh://git@gitlab.ing.net:2222",
-        //         "func":"var func = function (clipboard,url,pattern){let re = new RegExp(pattern);if(re.test(clipboard)){return url.replace('{*}',clipboard);}else{return false;}}"
-        // }   
-
-    // if(result.length > 300)
-    //   return;
-
-    // if(isURL(result)){
-    //   if (result.slice(0,3)=="www")
-    //     chrome.tabs.update(tab.id, {url: "http://"+result});
-    //   else
-    //     chrome.tabs.update(tab.id, {url: result});
-    //   return;
-    // }
-    
-    
   });
 });

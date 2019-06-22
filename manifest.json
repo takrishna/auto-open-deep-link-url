@@ -1,8 +1,9 @@
 {
-  "name": "Open URL From Clipboard",
+  "name": "URL Deep Linker",
   "version": "1.0",
   "description": "Open URL From Clipboard",
   "permissions": ["activeTab", "declarativeContent", "storage","tabs","clipboardRead"],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self' 'unsafe-eval'",
   "input_components": [
     {
       "name": "Test IME",
@@ -14,25 +15,23 @@
     }
   ],
   "options_page": "options.html",
- "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "browser_action": {
+    "default_icon": {                    
+      "16": "images/deep_linker16.png",
+      "32": "images/deep_linker32.png",
+      "48": "images/deep_linker48.png",
+      "128": "images/deep_linker128.png"
+    }
+  },
   "background": {
     "persistent": true,
     "page": "background.html"
   },
-  "page_action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
-    }
-  },
   "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+    "16": "images/deep_linker16.png",
+    "32": "images/deep_linker32.png",
+    "48": "images/deep_linker48.png",
+    "128": "images/deep_linker128.png"
   },
   "manifest_version": 2
 }

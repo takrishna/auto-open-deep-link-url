@@ -14,7 +14,7 @@
       "layouts": ["us::eng"]  
     }
   ],
-  "options_page": "options.html",
+  "options_page": "src/options/options.html",
   "browser_action": {
     "default_icon": {                    
       "16": "images/deep_linker16.png",
@@ -25,7 +25,7 @@
   },
   "background": {
     "persistent": true,
-    "page": "background.html"
+    "page": "src/background.html"
   },
   "icons": {
     "16": "images/deep_linker16.png",

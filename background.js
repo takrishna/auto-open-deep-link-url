@@ -2,378 +2,66 @@
 
 'use strict';
 
-chrome.tabs.onCreated.addListener(function(tab) {
-  var patternItem = {
-    name:"buildId",
-    type:"pattern",
-    url:"http://google.com/search?q=",
-    patternRegEx:"",
-    func:"var func = function (clipboard,url,array){if(array.findIndex(function(element){return clipboard==element})!=-1){return url+clipboard;}else{return false;}}"
-  }
-  //on created
-  chrome.storage.sync.set({color: '#3aa757'}, function() {
-    console.log('The color is green.');
-  });
-
+chrome.tabs.onCreated.addListener(function(tab) {   
   chrome.tabs.getSelected(null, function(tab){
-    
+
     //todo have routine to check if clipboard has changed
     //and trigger auto load
     if(tab.url!="chrome://newtab/")
       return;
 
-    let result = null;
+    let clipboard = null;
     let textarea = document.getElementById('ta');
     textarea.value = '';
     textarea.select();
 
     if (document.execCommand('paste')) {
-        result = textarea.value;
+      clipboard = textarea.value.trim();
     } else {
         console.error('Unable to get clipboard content');
     }
 
-    if(isURL(result)){
-      if (result.slice(0,3)=="www")
-        chrome.tabs.update(tab.id, {url: "http://"+result});
-      else
-        chrome.tabs.update(tab.id, {url: result});
-    }
+    //Read config from local storage
+    let config = {};
+    chrome.storage.local.get("specs", function(data) {
+        console.log('color is ', data);
+        config = data;
+        for (var specItem of data.specs) {
+          this.eval(specItem.func);
+          let result = func(clipboard,specItem.url,specItem.arrayOrPattern);
+          
+          //Check if weirdo and stop
+          if(result.length > 300)
+             return;
 
-    if(isSpectingular(result)){
-      chrome.tabs.update(tab.id, {url: "http://google.com/search?q="+result});
-    }
+          if (result){
+            chrome.tabs.update(tab.id, {url: result});
+            break;
+          }
+        }
+        return;
+    });
 
+    // ,
+        // {
+        //         "name":"if Gitlab SSH to to URL",
+        //         "type":"pattern",
+        //         "url":"{*}",
+        //         "arrayOrPattern":"^ssh://git@gitlab.ing.net:2222",
+        //         "func":"var func = function (clipboard,url,pattern){let re = new RegExp(pattern);if(re.test(clipboard)){return url.replace('{*}',clipboard);}else{return false;}}"
+        // }   
 
-    if(isInList(result)){
-      chrome.tabs.update(tab.id, {url: "https://www.bbc.com/"+result});
-    }
+    // if(result.length > 300)
+    //   return;
 
-    console.log(result);
+    // if(isURL(result)){
+    //   if (result.slice(0,3)=="www")
+    //     chrome.tabs.update(tab.id, {url: "http://"+result});
+    //   else
+    //     chrome.tabs.update(tab.id, {url: result});
+    //   return;
+    // }
+    
+    
   });
-  function isURL(input){
-    if(input.slice(0,5)=="https" || input.slice(0,4)=="http" || input.slice(0,3)=="www")
-      return true;
-    return false;
-  }
-  function isInList(input){
-    var specMods = ["weather","krish","anamika","ravali","preethi","Bear Tooth"];
-    if(specMods.findIndex(function(element){return input==element})!=-1)
-      return true;
-    return false;
-  }
-  function isSpectingular(input){
-    var specMods = ["abi","krish","anamika","ravali","preethi","Bear Tooth",
-    "Ostrich Eyes",
-    "Rabbit",
-    "Lobster Blood",
-    "Armadillos",
-    "Reindeers like",
-    "Chicken Flight",
-    "Bird's swallow",
-    "Cat Muscles",
-    "Goldfish Vision",
-    "Sleepy Cats",
-    "Toxic to dogs",
-    "Spiders not insects",
-    "Sleepy Koalas",
-    "Insect Surprise",
-    "African Parrots",
-    "Giraffe Long Tongue",
-    "Vocal Cats",
-    "Camel",
-    "Jumbo Nap",
-    "Cow stairs up",
-    "Frogs Swallow",
-    "Mammal Jump",
-    "Frogs Absorby",
-    "White dogs",
-    "Flying backwards",
-    "Bobby Heads",
-    "1000 Times they Beat",
-    "Sixy Dragonflies",
-    "Tongue Tied",
-    "Hippos are killers",
-    "Ears are Radiators",
-    "Enclosed Crocs",
-    "Hairs are tubes",
-    "No Upper Teeth",
-    "Not a circle",
-    "No sides",
-    "Pigs don’t look the sky",
-    "Army Eh !",
-    "Crasha Rihnos",
-    "Mob of kangaroos",
-    "Pod of Whales",
-    "Gaggle a Geese",
-    "Parliament",
-    "Glows",
-    "Most Deaf",
-    "285 Degrees",
-    "Smaller the better",
-    "Citrus",
-    "Its 7 times !!",
-    "Camels.. Eh not !!",
-    "Champagne Cork Seriously ?",
-    "Bury heads eh ?",
-    "Female Bites",
-    "Can’t walk",
-    "India loves Cows",
-    "Nah.. no side to side",
-    "Glowing scorpions",
-    "The Morning Stretch",
-    "Isaac’s Doors",
-    "Killers Cocos",
-    "Sleepy Gorillas",
-    "9 Yeara Life",
-    "Bones but not Hair",
-    "Giraffe and na Camel",
-    "Chickenopolis",
-    "Not Humans But Insects Rules",
-    "Dust Mites",
-    "Iguana under water",
-    "Emus back walk",
-    "228 Eggs an Year",
-    "Allergic to Milk",
-    "Killer Bees",
-    "25 Daysa life",
-    "60KMPH Swim",
-    "Smallest Dog",
-    "70KMPH Sharks",
-    "70 Million Sheeps",
-    "Smallest Bird",
-    "Only 4 Teeth",
-    "A billion on the table",
-    "One per shoe !!",
-    "Jumping Flea",
-    "24KMPH Honeys",
-    "90 times a Second",
-    "Backward Launch",
-    "18 More than Humans",
-    "Cheetas Speedy",
-    "A standing sleep",
-    "Jellyfish is all water",
-    "Flying mammals",
-    "Whisker Measurement",
-    "A 3 year sleep",
-    "Skin and Fur",
-    "Color blind",
-    "Twice Body Length",
-    "Sweaty Pads",
-    "Hippos under Water",
-    "Can’t swim backwards",
-    "Born without Humps",
-    "Female Bites",
-    "Spiky",
-    "Two & a Half Years",
-    "Killer Crocs",
-    "Insects everywhere",
-    "Giraffe's Swim",
-    "Wierd swallows",
-    "A full 5 litre",
-    "Uphill than Downhill",
-    "Steel teeth",
-    "No Stomach !",
-    "White blood",
-    "Boiling an Ostrich Egg",
-    "Fewer than Caterpillar",
-    "No Vocals",
-    "Eat twice body weight !!",
-    "Whos a Pod",
-    "Under-walk",
-    "Light Bones",
-    "Can't retract",
-    "Can't Crow",
-    "24kms !",
-    "Upside",
-    "Koalas or Humans",
-    "Jill",
-    "Easy Floaty",
-    "2 per person",
-    "A Million per person",
-    "Killer Cocos",
-    "Na moon walks",
-    "Pressure",
-    "A 50 Million",
-    "Really Long",
-    "Insect foot",
-    "Leg exports",
-    "10 tentacles",
-    "Windy Bee",
-    "Killer Hippos",
-    "Tongue Wraps",
-    "No Blinks",
-    "Ants hate baby powder",
-    "3 Days !!",
-    "Its Dolphins not Sharks",
-    "4 kms blood scent",
-    "Almost a Km in 2 mins",
-    "No reptiles in Antarctica",
-    "Aussie Sheeps",
-    "Good Speed",
-    "Teeth & Sex",
-    "Sleepy Movements",
-    "Sharp eyes",
-    "Team Work",
-    "Music and Cows",
-    "Infra Sound Frequencies",
-    "Long Life",
-    "Can't bite in rivers",
-    "It's a 6 month starvation",
-    "A third of its weight",
-    "Can't Swim",
-    "Cat Claws",
-    "Can't cough",
-    "Very flexible",
-    "Hey no Hay",
-    "All Men !!",
-    "22Kgs a day",
-    "50 +",
-    "Lifespan",
-    "A lotta worms",
-    "Flea Zooms",
-    "Its Transparent",
-    "Children and Blondes",
-    "It just 4",
-    "We have a day !",
-    "a lotta ladybugs",
-    "Very Zip",
-    "Feety Taste",
-    "No Stomach !",
-    "A lotta times",
-    "Its 4 not 2",
-    "60 to a Ton",
-    "Foreign Language !!",
-    "No Brains",
-    "A lotta sleep",
-    "A Skulk",
-    "Hippos are faster",
-    "Kingggg",
-    "20 a year !",
-    "Its Baboon",
-    "3 Toes",
-    "its 5 pairs",
-    "Quite Fast",
-    "Snaky Aug and Sep",
-    "A lung",
-    "Triple Protection",
-    "6 Times",
-    "Old and Wise",
-    "Crocs not Lions",
-    "A 100 years lifespan",
-    "18 of 250",
-    "Ostrich is faster",
-    "Quite a lifespan",
-    "Climb than Run",
-    "20 years",
-    "40 glasses",
-    "A 30 Elephant in One !",
-    "Very Fast",
-    "Sword Zoom",
-    "Once in a 2",
-    "Real Thick",
-    "Frog Poison",
-    "Real Slow",
-    "A lot southern",
-    "Only Moving",
-    "Real Tall",
-    "A lotta weight",
-    "A lotta bamboos",
-    "Crocs grow teeth",
-    "Skeletons Weight",
-    "A lot of Star Fish",
-    "Parrots",
-    "40K in a trunk",
-    "Lotsa bats",
-    "And Owl too",
-    "Green bones",
-    "They have a nose gate",
-    "Both ways",
-    "Real quick spikes",
-    "Zurp",
-    "We have the power !",
-    "The least meat",
-    "Super flaps",
-    "Quite fast",
-    "Very quick",
-    "A lotta Eggs",
-    "50 times",
-    "Ultra vision",
-    "Helpful insects",
-    "They Consume",
-    "A lotta cocoons",
-    "50 Years",
-    "Transparent it is",
-    "A lotta muscles",
-    "Fastest Dragon",
-    "Its bees not snakes",
-    "A lotta species",
-    "And even more ants",
-    "5 Years for a pearl !!",
-    "Its White",
-    "Infra Sound",
-    "Dinos",
-    "Jellyfish older than Dinos",
-    "Not all hibernate",
-    "And they are Carnivores",
-    "Real long tails",
-    "About it !!",
-    "Tallest mammal",
-    "Quite Fast",
-    "Lifespan",
-    "See & Hear",
-    "Not all are fatal",
-    "Bifocals",
-    "Really long",
-    "Just an inch",
-    "Too many times",
-    "What a taste",
-    "Smallest Mammal",
-    "Feet Irritator",
-    "Spider Signature",
-    "Many insects",
-    "7 and 15",
-    "Study of Insects",
-    "About 2 weeks",
-    "Lotsa bats",
-    "Yummy Celery",
-    "2 years of starvation",
-    "Leanest meats",
-    "Fear of Cats",
-    "Fear of Worms",
-    "Fear of Reptiles",
-    "Fear of Horses",
-    "Fear of Fish",
-    "Fear of Bees",
-    "Fear of Ants",
-    "Fear of Birds",
-    "Fear of Animals",
-    "Once in 3-4 days",
-    "No roars",
-    "White Eggs",
-    "Carnivorous they are",
-    "Really long tentacles",
-    "Very fast Cheetahs",
-    "Long living Roaches",
-    "7 to sleep",
-    "Water Brains",
-    "25 Yearsa sleep",
-    "Dimples of Golf",
-    "6 Billion Eh..",
-    "A lotta Eggs",
-    "The 10 Laughts",
-    "Leather and Stitches of Soccer",
-    "30K Spiky",
-    "4 Time Around the world",
-    "A ton ton food",
-    "A full six times",
-    "A lotta eggs",
-    "Lost by Teller",
-    "Buds",
-    "A full 50 Pounda Crap",
-    "Squirrel Span"];
-    if(specMods.findIndex(function(element){return input==element})!=-1)
-      return true;
-    return false;
-  }
 });

@@ -30,7 +30,7 @@ chrome.tabs.onCreated.addListener(function(tab) {
           let resultURL = func(clipboard,specItem.url,specItem.arrayOrPattern);
           
           if (resultURL){
-            if(result.length > 300)
+            if(resultURL.length > 300)
               return;
 
             chrome.tabs.update(tab.id, {url: resultURL});

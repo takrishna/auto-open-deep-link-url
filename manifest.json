@@ -25,7 +25,7 @@
   },
   "background": {
     "persistent": true,
-    "page": "src/background.html"
+    "page": "src/background/background.html"
   },
   "icons": {
     "16": "images/deep_linker16.png",

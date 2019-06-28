@@ -1,21 +1,26 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 'use strict';
 
-let page = document.getElementById('buttonDiv');
-const kButtonColors = ['"3aa757', '"e8453c', '"f9bb2d', '"4688f1'];
-function constructOptions(kButtonColors) {
-  for (let item of kButtonColors) {
-    let button = document.createElement('button');
-    button.style.backgroundColor = item;
-    button.addEventListener('click', function() {
-      chrome.storage.sync.set({color: item}, function() {
-        console.log('color is ' + item);
-      })
+//Read config from local storage
+//This is setup in setup.js - by listening onInstalled listener
+var eee = "";
+chrome.storage.local.get("specs", function (config) {
+  require([
+    'vs/basic-languages/monaco.contribution',
+    'vs/language/json/monaco.contribution'
+  ], function () {
+    eee = monaco.editor.create(document.getElementById('container'), {
+      value: [
+        JSON.stringify(config),
+      ].join('\n'),
+      language: 'json'
     });
-    page.appendChild(button);
+  });
+
+  editorDidMount(eee, monaco);
+  function editorDidMount(editor, monaco) {
+    setTimeout(function () {
+      eee.trigger('anyString', 'editor.action.formatDocument');
+    }, 300);
   }
-}
-constructOptions(kButtonColors);
+  return;
+});

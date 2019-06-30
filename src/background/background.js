@@ -9,6 +9,11 @@ chrome.tabs.onCreated.addListener(function(tab) {
     if(tab.url!="chrome://newtab/")
       return;
 
+    let autoOpen = true;
+    chrome.storage.local.get('autoOpen', function(data) {
+      autoOpen = data.autoOpen;
+    });
+
     let clipboard = null;
     let textarea = document.getElementById('ta');
     textarea.value = '';
@@ -33,6 +38,7 @@ chrome.tabs.onCreated.addListener(function(tab) {
             if(resultURL.length > 300)
               return;
 
+            if(autoOpen)
             chrome.tabs.update(tab.id, {url: resultURL});
             break;
           }

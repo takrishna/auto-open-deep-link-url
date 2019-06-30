@@ -16,6 +16,7 @@
   ],
   "options_page": "src/options/options.html",
   "browser_action": {
+    "default_popup": "src/popup/popup.html",
     "default_icon": {                    
       "16": "images/deep_linker16.png",
       "32": "images/deep_linker32.png",

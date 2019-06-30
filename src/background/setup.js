@@ -9,5 +9,7 @@ chrome.runtime.onInstalled.addListener(function() {
   .then(function(configJson) {
     chrome.storage.local.set(configJson, function() {
     })
+    chrome.storage.local.set({'autoOpen':true}, function(data) {
+    });
   });
 });

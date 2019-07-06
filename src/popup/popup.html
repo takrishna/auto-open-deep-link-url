@@ -9,20 +9,28 @@
         }
         .clipboard{
             outline: none;
-            width:400px;
+            width:450px;
+            padding: 5px;
+            font-size: 14px;
         }
         .clipboard :focus{
             outline: none;
             width:400px;
         }
+        .copyimg :hover{
+            opacity: 0;
+        }
         .copyimg{
             border-right: 2px solid rgb(168, 168, 168);
             padding-right: 10px;
-            background: url(../../images/copy.svg) no-repeat !important ;
+            background: url(../../images/copy.svg) no-repeat;
             height: 24px;
             width: 24px;
             display: inline-block;
             opacity: .5;
+        }
+        .goimg :hover{
+            opacity: 1;
         }
         .goimg{
             background: url(../../images/go.svg) no-repeat !important;
@@ -40,12 +48,16 @@
         .anchor{
             display: inline-block;
             width: 100%;
-            padding-top: 10px;
+            margin-bottom: 30px;
         }
         .anchor :hover{
-            background: rgb(197, 197, 197)
+            background-color:#f0f0f0
+        }
+        .aside-icons :hover{
+            opacity: 1;
         }
         .inlinesp{
+            font-size: 12px;
             display: inline-block;
             width: calc(100% - 75px);
             overflow: hidden;
@@ -55,18 +67,40 @@
             border: none;
             background: transparent;
         }
+        .footer{
+            text-align: center;
+            background:#f0f0f0;
+            height: 20px;
+            position: absolute;
+            line-height: 20px;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            padding: 5px;
+            font-size: smaller;
+            color: #4285f4 !important;
+        }
+        .footer a{
+            color: #4285f4 !important;
+            text-decoration: unset;
+        }
+        .label{
+            margin-top: 10px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
-    <br>
-    <div><input type="checkbox" id="autoOpen"> Auto Open Deep-linked URL on New Tab<br></div>
-    <br>
-    <div style="font-weight: bold">Input/Clipboard:</div>
+    <div><input type="checkbox" id="autoOpen"> When I open new Tab, Automatically navigate to the Deep-linked URL</div>
+    <div class="label">Input/Clipboard:</div>
     <input type="text" id="clipboard" class="clipboard"/>
-    <br><br>
-    <div style="font-weight: bold">Deep-linked URLs:</div>
+    <div class="label" style="margin-bottom: 0px">Deep-linked URLs:</div>
     <div id="anchor" class="anchor">
+    </div>
+    <div id="anchor" class="footer">
+        <a href="../options/options.html"> Extension Options </a>| <a href="https://github.com/takrishna/auto-open-deep-link-url">URL Deep Linker - Version 1.0.10</a>
     </div>
     <script src="popup.js"></script>
 </body>

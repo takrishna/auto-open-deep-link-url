@@ -41,7 +41,7 @@ if (window.Worker) {
           ett = tpl;
       }
     }
-      document.getElementById("anchor").innerHTML = (ett)?ett:"No Match";
+      document.getElementById("anchor").innerHTML = (ett)?ett:"<div style='margin-top:10px;'> No Match </div>";
   }
   postMessage();
 }

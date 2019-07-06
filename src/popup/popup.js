@@ -1,9 +1,8 @@
-  'use strict';
+'use strict';
 
 let autoOpen = document.getElementById('autoOpen');
 
 chrome.storage.local.get('autoOpen', function (data) {
-  console.log(data.autoOpen);
   autoOpen.checked = data.autoOpen;
 });
 
@@ -18,40 +17,70 @@ if (document.execCommand('paste')) {
   console.error('Unable to get clipboard content');
 }
 
+if (window.Worker) {
+  var myWorker = new Worker('popup_worker.js');  
+  myWorker.onmessage = function(e) {
+    var ett;
+    for(let i=0, j=0;i<e.data.length;i++){
+      if (!e.data[i])
+        continue;
+      else{
+        j++;
+        var tpl = "<div class='rowitem'>"+
+            "<input title='"+e.data[i]+"' readonly class='inlinesp' type='text' value='"+j+". "+e.data[i]+"'/>"+
+            //"<span class='inlinesp' id='itemOne' title='"+e.data[i]+"'>"+j+". "+e.data[i]+"</span>"+
+            "<span class='aside-icons'>" +
+            "<a class='copyimg' href=$c$o$p$ytoclipboard"+e.data[i]+"></a>" +
+            //"<span class='copyimg' ></span>" +
+            "<a class='goimg' href="+e.data[i]+"></a>" +
+            "</span>"+
+            "</div>";
+        if (ett)
+          ett = ett + tpl;
+        else
+          ett = tpl;
+      }
+    }
+      document.getElementById("anchor").innerHTML = (ett)?ett:"No Match";
+  }
+  postMessage();
+}
+
+//Keyup listener
 textarea.addEventListener("keyup",clipboardChange);
 function clipboardChange(data){
   clipboard = textarea.value;
-  logic();
+  postMessage();
 }
+
+//Post to Worker
+function postMessage(){
+  chrome.storage.local.get("specs", function (config) {
+    myWorker.postMessage({"clip":clipboard,"config":config});
+  })
+}
+
 autoOpen.addEventListener("click", save);
 function save() {
   if (autoOpen.checked)
-    chrome.storage.local.set({ 'autoOpen': true }, function (data) {
-    });
+    chrome.storage.local.set({ 'autoOpen': true }, function (data) {});
   else
-    chrome.storage.local.set({ 'autoOpen': false }, function (data) {
-    });
+    chrome.storage.local.set({ 'autoOpen': false }, function (data) {});
 }
-logic();
 
-function logic(){
-  chrome.storage.local.get("specs", function (config) {
-    for (var specItem of config.specs) {
-      //Evaluates func to memory
-      this.eval(specItem.func);
-      //Execute func to obtain URL to navigate
-      let resultURL = func(clipboard, specItem.url, specItem.arrayOrPattern);
-  
-      if (resultURL) {
-        if (resultURL.length > 300)
-          return;
-  
-        document.getElementById("itemOne").innerHTML = "1. "+resultURL;
-        break;
-      }
-      else
-        document.getElementById("itemOne").innerHTML = "No Match";
+  window.addEventListener('click',function(e){
+    if(e.target.href!==undefined){
+      if(e.target.href.includes("$c$o$p$ytoclipboard")){
+        e.preventDefault();
+        let textarea = document.getElementById('clipboard');
+        textarea.value = e.target.href.split("$c$o$p$ytoclipboard")[1];
+        textarea.select();
+        if (document.execCommand('copy')) {
+          textarea.value = clipboard;
+        } else {
+          console.error('Unable to get clipboard content');
+        }
+      }else
+      chrome.tabs.create({url:e.target.href})
     }
-    return;
-  });
-}
+})

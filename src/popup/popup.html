@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <style>
         .aside-icons{
             position: absolute;
             right: 10px;
+            padding-right: 10px;
+        }
+        .clipboard{
+            outline: none;
+            width:400px;
+        }
+        .clipboard :focus{
+            outline: none;
+            width:400px;
+        }
+        .copyimg{
+            border-right: 2px solid rgb(168, 168, 168);
+            padding-right: 10px;
+            background: url(../../images/copy.svg) no-repeat !important ;
+            height: 24px;
+            width: 24px;
+            display: inline-block;
+            opacity: .5;
+        }
+        .goimg{
+            background: url(../../images/go.svg) no-repeat !important;
+            height: 24px;
+            width: 24px;
+            margin-left: 10px;
+            display: inline-block;
+            opacity: .5;
+        }
+        .rowitem{
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+        }
+        .anchor{
+            display: inline-block;
+            width: 100%;
+            padding-top: 10px;
+        }
+        .anchor :hover{
+            background: rgb(197, 197, 197)
+        }
+        .inlinesp{
+            display: inline-block;
+            width: calc(100% - 75px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            outline: none;
+            border: none;
+            background: transparent;
         }
     </style>
 </head>
@@ -15,11 +63,11 @@
     <div><input type="checkbox" id="autoOpen"> Auto Open Deep-linked URL on New Tab<br></div>
     <br>
     <div style="font-weight: bold">Input/Clipboard:</div>
-    <input type="text" id="clipboard" style="width:300px"></input>
+    <input type="text" id="clipboard" class="clipboard"/>
     <br><br>
     <div style="font-weight: bold">Deep-linked URLs:</div>
-    <div><span id="itemOne"></span> <span class="aside-icons"><span>Copy | </span><span>Go</span></span></div>
-
+    <div id="anchor" class="anchor">
+    </div>
     <script src="popup.js"></script>
 </body>
 

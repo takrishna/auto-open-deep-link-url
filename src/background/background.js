@@ -3,12 +3,10 @@
 'use strict';
 
 chrome.tabs.onCreated.addListener(function (tab) {
-  chrome.tabs.getSelected(null, function (tab) {
-    //Skip logic if newtab
-    if (tab.url != "chrome://newtab/")
-      return;
-    runBg(tab, fetchClipboard());
-  });
+  if (tab.url != "chrome://newtab/")
+    return;
+
+  runBg(tab, fetchClipboard());
 });
 
 //Fetch clipboard content
@@ -28,7 +26,7 @@ function runBg(tab, clipboard) {
   //Read config from local storage
   //This is setup in setup.js - by listening onInstalled listener
   chrome.storage.local.get(["specs", "autoOpen", "prevVisit"], function (config) {
-    
+
     //Don't execute logic if Auto open flag is not set
     if (!config.autoOpen)
       return;
@@ -47,7 +45,7 @@ function runBg(tab, clipboard) {
       if (resultURL.length > 300)
         continue;
 
-      //run if not run on prev visit
+      //Run if not run on prev visit
       if (!(config.prevVisit && (config.prevVisit.prevOpenUrl.trim() == resultURL))) {
         chrome.tabs.update(tab.id, { url: resultURL });
         let prevVisit = { "prevVisit": { "prevOpenUrl": resultURL, "tabId": tab.id } };
@@ -55,7 +53,6 @@ function runBg(tab, clipboard) {
         })
       }
       break;
-
     }
   });
 }

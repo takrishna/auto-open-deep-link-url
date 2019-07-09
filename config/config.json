@@ -5,21 +5,21 @@
         "type":"array",
         "url":"https://d.ddd.dd.netdprojects/{*}",
         "arrayOrPattern":["abi","krishna"],
-        "func":"var func = function (clipboard,url,array){if(array.findIndex(function(element){return clipboard==element})!=-1){return url.replace('{*}',clipboard);}else{return false;}}"
+        "func":"{if(arrayOrPattern.findIndex(function(element){return clipboard==element})!=-1){return url.replace('{*}',clipboard);}else{return false;}}"
     },
     {
         "name":"Pattern Match Example",
         "type":"pattern",
         "url":"{*}",
         "arrayOrPattern":"www",
-        "func":"var func = function (clipboard,url,pattern){let re = new RegExp(pattern);if(re.test(clipboard)){return 'http://'+url.replace('{*}',clipboard);}else{return false;}}"
+        "func":"{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return 'http://'+url.replace('{*}',clipboard);}else{return false;}}"
     },   
     {
         "name":"if URL",
         "type":"pattern",
         "url":"{*}",
         "arrayOrPattern":"www",
-        "func":"var func = function (clipboard,url,pattern){let re = new RegExp(pattern);if(re.test(clipboard)){return 'http://'+url.replace('{*}',clipboard);}else{return false;}}"
-    }   
+        "func":"{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return 'http://'+url.replace('{*}',clipboard);}else{return false;}}"
+    }  
     ]
 }

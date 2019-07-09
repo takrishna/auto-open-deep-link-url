@@ -44,4 +44,3 @@ function reset(){
     eee.setValue(previousValue);
     triggerFormat();
 }
-

@@ -23,10 +23,7 @@ function fetchClipboard() {
 
 //Executed in background
 function runInBackground(tab, clipboard, config, ref) {
-  //Don't execute logic if Auto open flag is not set
-  if (!config.autoOpen)
-    return;
-
+  
   for (var specItem of config.specs) {
     //Evaluates func to memory
     let func = new Function("clipboard","url","arrayOrPattern",specItem.func);
@@ -37,6 +34,12 @@ function runInBackground(tab, clipboard, config, ref) {
     //If no result URL continue to next item for a match
     if (!resultURL)
       continue;
+    
+    //Don't execute logic if Auto open flag is not set
+    if (!config.autoOpen){
+      setBadge("1");
+      return;
+    }
 
     //Reject Bad URL
     if (resultURL.length > 300)

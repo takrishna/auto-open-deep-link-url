@@ -6,6 +6,10 @@
   "repository": "https://github.com/takrishna/auto-open-deep-link-url",
   "license": "MIT",
   "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-terser": "^1.2.0",
+    "gulp-uglify-es": "^1.0.4",
     "monaco-editor": "latest"
   }
 }

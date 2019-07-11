@@ -1,0 +1,1 @@
+"use strict";chrome.runtime.onInstalled.addListener(function(){fetch("/config/config.json").then(function(n){return n.json()}).then(function(n){n.autoOpen=!0,chrome.storage.local.set(n,function(){})})});

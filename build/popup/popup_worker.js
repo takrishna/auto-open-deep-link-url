@@ -1,0 +1,1 @@
+function logic(r,a){return a.specs.reduce((a,n)=>{let e=new Function("clipboard","url","arrayOrPattern",n.func)(r,n.url,n.arrayOrPattern);return a.push(e),a},[])}onmessage=function(r){var a=logic(r.data.clip,r.data.config);postMessage(a)};

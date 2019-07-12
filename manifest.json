@@ -14,9 +14,9 @@
       "layouts": ["us::eng"]  
     }
   ],
-  "options_page": "src/options/options.html",
+  "options_page": "./options/options.html",
   "browser_action": {
-    "default_popup": "src/popup/popup.html",
+    "default_popup": "./popup/popup.html",
     "default_icon": {                    
       "16": "images/deep_linker16.png",
       "32": "images/deep_linker32.png",
@@ -26,7 +26,7 @@
   },
   "background": {
     "persistent": true,
-    "page": "src/background/background.html"
+    "page": "./background/background.html"
   },
   "icons": {
     "16": "images/deep_linker16.png",

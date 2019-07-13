@@ -7,9 +7,9 @@ function esbuild(){
   gulp.src('./src/**/*.js')
     .pipe(terser())
     .pipe(gulp.dest('./build'));
-  gulp.src(['./options/vs/*.css'])
-    .pipe(gulp.dest('./build/options/vs/'));
-  gulp.src(['./images/*.*'])
+  gulp.src('./src/options/vs/editor/editor.main.css')
+    .pipe(gulp.dest('./build/options/vs/editor'));
+  gulp.src('./images/*.*')
     .pipe(gulp.dest('./build/images'));
   gulp.src(['./config/*.*'])
     .pipe(gulp.dest('./build/config'));

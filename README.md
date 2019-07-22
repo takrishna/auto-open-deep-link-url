@@ -1,6 +1,8 @@
 # url-deep-linker
 A Chrome extension which understands the content on the clipboard, automatically weaves a deep linked URL and navigates to it on the newly opened tab. 
 
+Install on your Chrome browser: https://chrome.google.com/webstore/detail/url-deep-linker/bobgnhnpdhkdhaffdkkpaaojbobbhfla?utm_source=chrome-ntp-icon
+
 Examples:
 
 * **Deep linked URLs:** If the content on the clipboard matches a defined pattern set (RegEx or an item on the config array), then opening a new tab will automatically navigate to the desired page.

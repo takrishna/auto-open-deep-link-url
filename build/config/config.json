@@ -1,25 +1,56 @@
 {
-"specs":[
-    {
-        "name":"Array match example",
-        "type":"array",
-        "url":"https://d.ddd.dd.netdprojects/{*}",
-        "arrayOrPattern":["abi","krishna"],
-        "func":"{if(arrayOrPattern.findIndex(function(element){return clipboard==element})!=-1){return url.replace('{*}',clipboard);}else{return false;}}"
-    },
-    {
-        "name":"Pattern Match Example",
-        "type":"pattern",
-        "url":"{*}",
-        "arrayOrPattern":"www",
-        "func":"{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return 'http://'+url.replace('{*}',clipboard);}else{return false;}}"
-    },   
-    {
-        "name":"if URL",
-        "type":"pattern",
-        "url":"{*}",
-        "arrayOrPattern":"www",
-        "func":"{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return 'http://'+url.replace('{*}',clipboard);}else{return false;}}"
-    }  
+    "specs": [
+        {
+            "arrayOrPattern": [
+                "gopacket",
+                "go-cloud",
+                "zazu",
+                "copybara",
+                "peoplemath",
+                "blockly-games",
+                "truth",
+                "googletest",
+                "blockly"
+            ],
+            "func": "{if(arrayOrPattern.findIndex(function(element){return clipboard==element})!=-1){return url.replace('{*}',clipboard);}else{return false;}}",
+            "name": "Array match example",
+            "type": "array",
+            "url": "https://github.com/google/{*}"
+        },
+        {
+            "arrayOrPattern": "http|https|www",
+            "func": "{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return url.replace('{*}',clipboard);}else{return false;}}",
+            "name": "Pattern Match Example - open any URL copied to clipboard",
+            "type": "pattern",
+            "url": "{*}"
+        },
+        {
+            "arrayOrPattern": "[0-9]",
+            "func": "{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return url.replace('{*}',clipboard);}else{return false;}}",
+            "name": "Pattern Match Example - matches stackoverflow user id",
+            "type": "pattern",
+            "url": "https://stackoverflow.com/users/{*}"
+        },
+        {
+            "arrayOrPattern": "[0-9]",
+            "func": "{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return url.replace('{*}',clipboard);}else{return false;}}",
+            "name": "Pattern Match Example - matches aliexpress item id",
+            "type": "pattern",
+            "url": "https://www.aliexpress.com/item/{*}.html"
+        },
+        {
+            "arrayOrPattern": "",
+            "func": "{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return url.replace('{*}',clipboard);}else{return false;}}",
+            "name": "Pattern Match Example - matches anything on clipboard and opens on Google search",
+            "type": "pattern",
+            "url": "https://www.google.com/search?q={*}"
+        },
+        {
+            "arrayOrPattern": "(\\+[A-Z][0-9])$",
+            "func": "{let re = new RegExp(arrayOrPattern);if(re.test(clipboard)){return url.replace('{*}',clipboard);}else{return false;}}",
+            "name": "Pattern Match Example - matches anything on clipboard and opens on Google search",
+            "type": "pattern",
+            "url": "https://plus.codes/{*}"
+        }
     ]
 }

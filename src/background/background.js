@@ -2,7 +2,7 @@
 
 //Listen to new Tab creation
 chrome.tabs.onCreated.addListener(function (tab) {
-  if (tab.url != "chrome://newtab/")
+  if (tab.url)
     return;
   chrome.storage.local.get(["specs", "autoOpen", "prevVisit"], function (config) {
     runInBackground(tab, fetchClipboard(), config, this);

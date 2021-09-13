@@ -5,10 +5,10 @@ onmessage = function(e) {
 
 function logic(clipboard,config){
   var returnURLArray = config.specs.reduce((acc, specItem) => {
-    let func = new Function("clipboard","url","arrayOrPattern",specItem.func);
+    let func = new Function("clipboard", "url", "arrayOrPattern", "buildRequestParam", "displayName", specItem.func);
     
     //Execute func to obtain URL to navigate
-    let returnURL = func(clipboard, specItem.url, specItem.arrayOrPattern);
+    let returnURL = func(clipboard, specItem.url, specItem.arrayOrPattern, specItem.buildRequestParam, specItem.displayName);
     acc.push(returnURL);
     return acc;
     }, []);

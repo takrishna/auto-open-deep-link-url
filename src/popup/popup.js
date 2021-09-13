@@ -27,12 +27,12 @@ if (window.Worker) {
       else{
         j++;
         var tpl = "<div class='rowitem'>"+
-            "<input title='"+e.data[i]+"' readonly class='inlinesp' type='text' value='"+j+". "+e.data[i]+"'/>"+
+            "<input title='"+e.data[i]+"' readonly class='inlinesp' type='text' value='"+j+". "+e.data[i].displayName+"'/>"+
             //"<span class='inlinesp' id='itemOne' title='"+e.data[i]+"'>"+j+". "+e.data[i]+"</span>"+
             "<span class='aside-icons'>" +
-            "<a class='copyimg' href=$c$o$p$ytoclipboard"+e.data[i]+"></a>" +
+            "<a class='copyimg' href=$c$o$p$ytoclipboard"+e.data[i].url+"></a>" +
             //"<span class='copyimg' ></span>" +
-            "<a class='goimg' href="+e.data[i]+"></a>" +
+            "<a class='goimg' href="+e.data[i].url+"></a>" +
             "</span>"+
             "</div>";
         if (ett)
